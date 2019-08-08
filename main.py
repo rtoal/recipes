@@ -17,16 +17,13 @@ class SearchFormHandler(webapp2.RequestHandler):
 
 class RecipeDisplayHandler(webapp2.RequestHandler):
     def post(self):
-        query = self.request.get('query')
         base_url = 'http://www.recipepuppy.com/api/?'
-        params = { 'q': query }
-        response = urlfetch.fetch(base_url + urlencode(params)).content
-        results = json.loads(response)
-
+        params = {
+            'q': self.request.get('query'),
+            'i': self.request.get('ingredients')}
+        response = json.loads(urlfetch.fetch(base_url + urlencode(params)).content)
         template = jinja_env.get_template('templates/recipe.html')
-        self.response.write(template.render({
-            'results': results
-        }))
+        self.response.write(template.render({ 'response': response }))
 
 app = webapp2.WSGIApplication([
     ('/', SearchFormHandler),

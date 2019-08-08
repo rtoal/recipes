@@ -8,14 +8,7 @@
 <body>
   <p>Here are your recipes</p>
   <section>
-
-    <!--
-      PUT STYLES ON
-         .result .image
-         .result .title
-         .result .ingredients
-    -->
-    {% for result in results.results %}
+    {% for result in response.results %}
       <section class="result">
         <div class="image"><img src="{{ result.thumbnail }}"></div>
         <div>
