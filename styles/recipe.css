@@ -31,4 +31,5 @@ form div {
 
 .result .ingredients {
   font-style: italic;
+  display: none;
 }
